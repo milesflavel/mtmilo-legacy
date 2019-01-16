@@ -71,7 +71,7 @@ function Scene(){
     scene.mouseY = Math.floor((evt.clientY - rect.top) /sy);
   }, false);
 
-  this.canvas.addEventListener('click', function(){
+  this.canvas.addEventListener('mouseup', function(){
     if (scene.mouseover)
       scene.mouseover.click();
   });
