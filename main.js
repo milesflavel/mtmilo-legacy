@@ -14,7 +14,6 @@ function init(){
   };
   tvscreen.tvframe = 1;
   tvscreen.tooltip = "My Milo Show (YouTube)";
-  scene.tvscreen = tvscreen;
 
   var map = new SpriteSimple(107, 28, 'img/map.png')
   map.click = function(){
@@ -43,6 +42,7 @@ function init(){
   scene.objects.push(tvscreen);
   scene.objects.push(n64);
   scene.objects.push(videosphere);
+  scene.tvscreen = tvscreen;
 
   frameCount = 0;
   then = Date.now();
