@@ -73,7 +73,7 @@ function Scene(){
     var overlay = new SpriteSimple(0, 0, imagePath);
     this.objects.push(overlay);
 
-    var closeButton = new SpriteSimple(300, 2, 'img/overlay-button-close.png');
+    var closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
     closeButton.click = function(){
       scene.objects.pop();
       scene.objects.pop();
