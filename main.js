@@ -1,4 +1,4 @@
-var scene, now, then;
+var scene, lastTimestamp;
 
 // Function to initiate the scene and begin the draw routine
 function init(){
@@ -20,7 +20,7 @@ function init(){
 
   var map = new SpriteSimple(107, 28, 'img/map.png')
   map.click = function(){
-    document.scene.showOverlay('img/overlay-map.png');
+    scene.showOverlay('img/overlay-map.png');
   };
   map.tvframe = 5;
 
@@ -43,9 +43,6 @@ function init(){
   scene.objects.push(n64);
   scene.objects.push(videosphere);
 
-  document.scene = scene;
-  document.tvscreen = tvscreen;
-
   frameCount = 0;
   then = Date.now();
   startTime = then;
@@ -53,18 +50,17 @@ function init(){
 }
 
 // Update the state of the scene, draw the result and call the next animation frame
-function draw(){
+function draw(timestamp){
   scene.checkMouseover();
   scene.update();
   scene.render();
 
-  now = Date.now();
   if (scene.showFPS){
-    png_font.drawText(Math.floor(1000/(now - then)).toString(), [5, 0], "white");
+    png_font.drawText(Math.floor(1000/(timestamp - lastTimestamp)).toString(), [5, 0], "white");
   }
-  then = now;
+  lastTimestamp = timestamp;
 
-  window.requestAnimationFrame(draw);
+  requestAnimationFrame(draw);
 }
 
 // Creates an anchor element and immediately navigates to it

@@ -56,8 +56,8 @@ function Scene(){
 
     var closeButton = new SpriteSimple(300, 2, 'img/overlay-button-close.png');
     closeButton.click = function(){
-      document.scene.objects.pop();
-      document.scene.objects.pop();
+      scene.objects.pop();
+      scene.objects.pop();
     };
     this.objects.push(closeButton);
   };
@@ -67,12 +67,12 @@ function Scene(){
     var rect = canvas.getBoundingClientRect();
     var sx = canvas.scrollWidth / canvas.width;
     var sy = canvas.scrollHeight / canvas.height;
-    document.scene.mouseX = Math.floor((evt.clientX - rect.left) / sx);
-    document.scene.mouseY = Math.floor((evt.clientY - rect.top) /sy);
+    scene.mouseX = Math.floor((evt.clientX - rect.left) / sx);
+    scene.mouseY = Math.floor((evt.clientY - rect.top) /sy);
   }, false);
 
   this.canvas.addEventListener('click', function(){
-    if (document.scene.mouseover)
-      document.scene.mouseover.click();
+    if (scene.mouseover)
+      scene.mouseover.click();
   });
 }
