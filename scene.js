@@ -42,6 +42,14 @@ function Scene(){
     }
   };
 
+  this.setCursorPos = function(x, y){
+    var rect = canvas.getBoundingClientRect();
+    var sx = canvas.scrollWidth / canvas.width;
+    var sy = canvas.scrollHeight / canvas.height;
+    this.mouseX = Math.floor((x - rect.left) / sx);
+    this.mouseY = Math.floor((y - rect.top) /sy);
+  }
+
   this.drawCursor = function(){
     this.context.fillRect(this.mouseX, this.mouseY, 1, 1);
     this.context.fillRect(this.mouseX + 2, this.mouseY, 3, 1);
@@ -64,14 +72,17 @@ function Scene(){
 
   // Listeners
   this.canvas.addEventListener('mousemove', function(evt){
-    var rect = canvas.getBoundingClientRect();
-    var sx = canvas.scrollWidth / canvas.width;
-    var sy = canvas.scrollHeight / canvas.height;
-    scene.mouseX = Math.floor((evt.clientX - rect.left) / sx);
-    scene.mouseY = Math.floor((evt.clientY - rect.top) /sy);
+    scene.setCursorPos(evt.clientX, evt.clientY);
   }, false);
 
-  this.canvas.addEventListener('mouseup', function(){
+  this.canvas.addEventListener('touchmove', function(evt){
+    evt.preventDefault();
+    scene.setCursorPos(evt.touches[0].clientX, evt.touches[0].clientY);
+  }, false);
+
+  this.canvas.addEventListener('mouseup', function(evt){
+    scene.setCursorPos(evt.clientX, evt.clientY);
+    scene.checkMouseover();
     if (scene.mouseover)
       scene.mouseover.click();
   });
