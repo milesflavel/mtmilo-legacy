@@ -58,7 +58,9 @@ function draw(timestamp){
 
   if (scene.mouseover){
     scene.tvscreen.frame = scene.mouseover.tvframe;
-    png_font.drawText(scene.mouseover.tooltip, [(40-scene.mouseover.tooltip.length)/2*8, 0], "white");
+    if(scene.mouseover.tooltip.length){
+      scene.drawTooltip(scene.mouseover.tooltip);
+    }
   }
 
   if (scene.showFPS){

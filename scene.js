@@ -51,11 +51,22 @@ function Scene(){
   }
 
   this.drawCursor = function(){
+    this.context.fillStyle = "white";
     this.context.fillRect(this.mouseX, this.mouseY, 1, 1);
     this.context.fillRect(this.mouseX + 2, this.mouseY, 3, 1);
     this.context.fillRect(this.mouseX, this.mouseY + 2, 1, 3);
     this.context.fillRect(this.mouseX - 1, this.mouseY, -3, 1);
     this.context.fillRect(this.mouseX, this.mouseY - 1, 1, -3);
+  };
+
+  this.drawTooltip = function(tooltip){
+    var leftBound = (40-tooltip.length)/2*8;
+    var pixelLength = tooltip.length*8;
+    scene.context.fillStyle = "black";
+    scene.context.fillRect(leftBound-4, 0, pixelLength+8, 19);
+    scene.context.fillStyle = "white";
+    scene.context.fillRect(leftBound-3, 0, pixelLength+6, 18);
+    png_font.drawText(tooltip, [leftBound, 0], "black");
   };
 
   this.showOverlay = function(imagePath){
@@ -67,6 +78,7 @@ function Scene(){
       scene.objects.pop();
       scene.objects.pop();
     };
+    closeButton.tooltip = "Close";
     this.objects.push(closeButton);
   };
 
