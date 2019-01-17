@@ -14,8 +14,10 @@ function init(){
   }, false);
 
   scene.canvas.addEventListener('touchmove', function(evt){
-    evt.preventDefault();
-    scene.setCursorPos(evt.touches[0].clientX, evt.touches[0].clientY);
+    if (event.touches.length == 1){
+      evt.preventDefault();
+      scene.setCursorPos(evt.touches[0].clientX, evt.touches[0].clientY);
+    }
   }, false);
 
   scene.canvas.addEventListener('mouseup', function(evt){
