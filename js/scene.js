@@ -81,21 +81,4 @@ function Scene(){
     closeButton.tooltip = "Close";
     this.objects.push(closeButton);
   };
-
-  // Listeners
-  this.canvas.addEventListener('mousemove', function(evt){
-    scene.setCursorPos(evt.clientX, evt.clientY);
-  }, false);
-
-  this.canvas.addEventListener('touchmove', function(evt){
-    evt.preventDefault();
-    scene.setCursorPos(evt.touches[0].clientX, evt.touches[0].clientY);
-  }, false);
-
-  this.canvas.addEventListener('mouseup', function(evt){
-    scene.setCursorPos(evt.clientX, evt.clientY);
-    scene.checkMouseover();
-    if (scene.mouseover)
-      scene.mouseover.click();
-  });
 }
