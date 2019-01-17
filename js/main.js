@@ -19,9 +19,10 @@ function init(){
   }, false);
 
   scene.canvas.addEventListener('mouseup', function(evt){
+    var mouseoverCurrent = scene.mouseover;
     scene.setCursorPos(evt.clientX, evt.clientY);
     scene.checkMouseover();
-    if (scene.mouseover)
+    if (scene.mouseover && mouseoverCurrent == scene.mouseover)
       scene.mouseover.click();
   });
 
