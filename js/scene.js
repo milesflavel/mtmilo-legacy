@@ -34,16 +34,7 @@ function Scene(){
   this.checkMouseover = function(){
     this.mouseover = null;
     for (var i = 0; i < this.children.length; i++){
-      if (this.children[i].checkMouseover(this.mouseX, this.mouseY)){
-        if (this.mouseover) {
-          this.mouseover.mouseover = false;
-        }
-        this.mouseover = this.children[i];
-        this.mouseover.mouseover = true;
-      }
-      else{
-        this.children[i].mouseover = false;
-      }
+      this.children[i].checkMouseover(this.mouseX, this.mouseY);
     }
   };
 

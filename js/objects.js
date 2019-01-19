@@ -12,7 +12,34 @@ function Entity(x, y){
   // Methods
   this.render = function(context){};
   this.update = function(){};
-  this.checkMouseover = function(){};
+  this.checkMouseover = function(x, y){
+    // Check mouseover state for this object
+    if (this.isMouseInBounds(x, y)){
+      if (scene.mouseover) {
+        scene.mouseover.mouseover = false;
+      }
+      scene.mouseover = this;
+      scene.mouseover.mouseover = true;
+    }
+    else{
+      this.mouseover = false;
+    }
+    // Now check mouseover state for this object's children
+    for (var i = 0; i < this.children.length; i++){
+      if (this.children[i].isMouseInBounds(x, y)){
+        if (scene.mouseover) {
+          scene.mouseover.mouseover = false;
+        }
+        scene.mouseover = this.children[i];
+        scene.mouseover.mouseover = true;
+      }
+      else{
+        this.children[i].mouseover = false;
+      }
+      this.children[i].checkMouseover(x, y);
+    }
+  };
+  this.isMouseInBounds = function(x, y){};
   this.click = function(){};
   this.addChild = function(object){
     object.parent = this;
@@ -48,7 +75,7 @@ function SpriteSimple(x, y, imagePath){
     }
   };
 
-  this.checkMouseover = function(x, y){
+  this.isMouseInBounds = function(x, y){
     return (x >= this.x) && (y >= this.y) && (x < this.x + this.image.width) && (y < this.y + this.image.height);
   };
 }
@@ -81,7 +108,7 @@ function SpriteAnimated(x, y, imagePaths){
     }
   };
 
-  this.checkMouseover = function(x, y){
+  this.isMouseInBounds = function(x, y){
     return (x >= this.x) && (y >= this.y) && (x < this.x + this.frames[this.frame].width) && (y < this.y + this.frames[this.frame].height);
   };
 }
