@@ -16,6 +16,8 @@ function createSceneObjects(){
 
   var n64 = new SpriteSimple(145, 122, 'img/n64.png');
 
+  var norseboard = new SpriteSimple(38, 104, 'img/norseboard.png');
+
   var videosphere = new SpriteSimple(73, 80, 'img/videosphere.png');
 
   var icon1 = new SpriteSimple(41, 33, 'img/icon-youtube.png');
@@ -51,6 +53,7 @@ function createSceneObjects(){
   scene.addChild(tv);
   scene.addChild(tvscreen);
   scene.addChild(n64);
+  scene.addChild(norseboard);
   scene.addChild(videosphere);
 
   scene.addChild(icon1);
