@@ -18,10 +18,23 @@ function Scene(){
   };
 
   this.render = function(){
+    // Clear the frame
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // Render children
     for (var i = 0; i < this.children.length; i++){
       this.children[i].render(this.context);
     }
+
+    // Draw tooltip
+    if (this.mouseover){
+      this.tvscreen.frame = this.mouseover.tvframe;
+      if(this.mouseover.tooltip.length){
+        this.drawTooltip(this.mouseover.tooltip);
+      }
+    }
+
+    // Draw cursor
     this.drawCursor();
   };
 

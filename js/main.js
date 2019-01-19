@@ -42,13 +42,6 @@ function draw(timestamp){
   scene.update();
   scene.render();
 
-  if (scene.mouseover){
-    scene.tvscreen.frame = scene.mouseover.tvframe;
-    if(scene.mouseover.tooltip.length){
-      scene.drawTooltip(scene.mouseover.tooltip);
-    }
-  }
-
   if (scene.showFPS){
     png_font.drawText(Math.floor(1000/(timestamp - lastTimestamp)).toString(), [5, 0], "white");
   }
