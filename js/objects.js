@@ -42,10 +42,10 @@ function SpriteSimple(x, y, imagePath){
 
   // Methods
   this.render = function(context){
+    context.drawImage(this.image, this.x, this.y);
     for (var i = 0; i < this.children.length; i++){
       this.children[i].render(context);
     }
-    context.drawImage(this.image, this.x, this.y);
   };
 
   this.checkMouseover = function(x, y){
