@@ -76,14 +76,13 @@ function Scene(){
 
   this.showOverlay = function(imagePath){
     var overlay = new SpriteSimple(0, 0, imagePath);
-    this.addChild(overlay);
 
     var closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
     closeButton.click = function(){
-      scene.children.pop();
-      scene.children.pop();
+      this.parent.dispose();
     };
     closeButton.tooltip = "Close";
-    this.addChild(closeButton);
+    overlay.addChild(closeButton);
+    this.addChild(overlay);
   };
 }
