@@ -79,16 +79,4 @@ function Scene(){
     scene.context.fillRect(leftBound-3, 0, pixelLength+6, 18);
     png_font.drawText(tooltip, [leftBound, 0], "black");
   };
-
-  this.showOverlay = function(imagePath){
-    var overlay = new SpriteSimple(0, 0, imagePath);
-
-    var closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
-    closeButton.click = function(){
-      this.parent.dispose();
-    };
-    closeButton.tooltip = "Close";
-    overlay.addChild(closeButton);
-    this.addChild(overlay);
-  };
 }

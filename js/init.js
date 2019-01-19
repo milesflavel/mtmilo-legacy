@@ -6,7 +6,7 @@ function createSceneObjects(){
 
   var map = new SpriteSimple(107, 28, 'img/map.png')
   map.click = function(){
-    scene.showOverlay('img/overlay-map.png');
+    scene.addChild(new OverlayImage("States I've seen", 'img/overlay-map.png'));
   };
   map.tvframe = 5;
   map.tooltip = "USA Adventures";

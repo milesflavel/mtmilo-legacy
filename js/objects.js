@@ -148,3 +148,38 @@ function OverlaySimple(title){
     return true;
   };
 }
+
+
+// Full page image overlay
+OverlayImage.prototype = new Entity();
+OverlayImage.constructor = OverlayImage;
+
+function OverlayImage(title, imagePath){
+  // Initialize
+  Entity.call(this, 0, 0);
+
+  // Properties
+  this.tooltip = title;
+  this.image = new Image();
+  this.image.src = imagePath + "?" + version;
+
+  // Default children
+  var closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
+  closeButton.click = function(){
+    this.parent.dispose();
+  };
+  closeButton.tooltip = "Close";
+  this.addChild(closeButton);
+
+  // Methods
+  this.render = function(context){
+    context.drawImage(this.image, 0, 0);
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].render(context);
+    }
+  };
+
+  this.isMouseInBounds = function(x, y){
+    return true;
+  };
+}
