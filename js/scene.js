@@ -47,12 +47,14 @@ function Scene(){
   }
 
   this.drawCursor = function(){
+    this.context.globalCompositeOperation = 'difference';
     this.context.fillStyle = "white";
     this.context.fillRect(this.mouseX, this.mouseY, 1, 1);
     this.context.fillRect(this.mouseX + 2, this.mouseY, 3, 1);
     this.context.fillRect(this.mouseX, this.mouseY + 2, 1, 3);
     this.context.fillRect(this.mouseX - 1, this.mouseY, -3, 1);
     this.context.fillRect(this.mouseX, this.mouseY - 1, 1, -3);
+    this.context.globalCompositeOperation = 'source-over';
   };
 
   this.drawTooltip = function(tooltip){
