@@ -1,6 +1,8 @@
 // Simple entity
 function Entity(x, y){
   // Properties
+  this.parent = null;
+  this.children = new Array();
   this.x = x;
   this.y = y;
   this.mouseover = false;
@@ -12,6 +14,17 @@ function Entity(x, y){
   this.update = function(){};
   this.checkMouseover = function(){};
   this.click = function(){};
+  this.addChild = function(object){
+    object.parent = this;
+    this.children.push(object);
+  };
+  this.dispose = function(){
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].dispose();
+    }
+    var index = this.parent.children.indexOf(this);
+    this.parent.children.splice(index, 1);
+  };
 }
 
 
@@ -25,10 +38,13 @@ function SpriteSimple(x, y, imagePath){
 
   // Properties
   this.image = new Image();
-  this.image.src = imagePath;
+  this.image.src = imagePath + "?" + version;
 
   // Methods
   this.render = function(context){
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].render(context);
+    }
     context.drawImage(this.image, this.x, this.y);
   };
 
@@ -51,12 +67,15 @@ function SpriteAnimated(x, y, imagePaths){
   this.frames = new Array();
   for (var i = 0; i < imagePaths.length; i++){
     var image = new Image();
-    image.src = imagePaths[i];
+    image.src = imagePaths[i] + "?" + version;
     this.frames.push(image);
   }
 
   // Methods
   this.render = function(context){
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].render(context);
+    }
     if (this.frames.length > this.frame){
       context.drawImage(this.frames[this.frame], this.x, this.y);
     }

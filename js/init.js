@@ -43,17 +43,17 @@ function createSceneObjects(){
   icon4.tvframe = 4;
   icon4.tooltip = "Instagram";
 
-  scene.objects.push(background);
-  scene.objects.push(map);
-  scene.objects.push(tv);
-  scene.objects.push(tvscreen);
-  scene.objects.push(n64);
-  scene.objects.push(videosphere);
+  scene.addChild(background);
+  scene.addChild(map);
+  scene.addChild(tv);
+  scene.addChild(tvscreen);
+  scene.addChild(n64);
+  scene.addChild(videosphere);
 
-  scene.objects.push(icon1);
-  scene.objects.push(icon2);
-  scene.objects.push(icon3);
-  scene.objects.push(icon4);
+  scene.addChild(icon1);
+  scene.addChild(icon2);
+  scene.addChild(icon3);
+  scene.addChild(icon4);
 
   scene.tvscreen = tvscreen;
 }

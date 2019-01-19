@@ -4,7 +4,7 @@ function Scene(){
   this.canvas = document.getElementById('canvas');
   this.context = this.canvas.getContext('2d');
   this.context.fillStyle = "#fff";
-  this.objects = new Array();
+  this.children = new Array();
   this.showFPS = false;
 
   this.mouseX = 0;
@@ -12,32 +12,37 @@ function Scene(){
   this.mouseover = null;
 
   // Methods
+  this.addChild = function(object){
+    object.parent = this;
+    this.children.push(object);
+  };
+
   this.render = function(){
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    for (var i = 0; i < this.objects.length; i++){
-      this.objects[i].render(this.context);
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].render(this.context);
     }
     this.drawCursor();
   };
 
   this.update = function(){
-    for (var i = 0; i < this.objects.length; i++){
-      this.objects[i].update();
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].update();
     }
   };
 
   this.checkMouseover = function(){
     this.mouseover = null;
-    for (var i = 0; i < this.objects.length; i++){
-      if (this.objects[i].checkMouseover(this.mouseX, this.mouseY)){
+    for (var i = 0; i < this.children.length; i++){
+      if (this.children[i].checkMouseover(this.mouseX, this.mouseY)){
         if (this.mouseover) {
           this.mouseover.mouseover = false;
         }
-        this.mouseover = this.objects[i];
+        this.mouseover = this.children[i];
         this.mouseover.mouseover = true;
       }
       else{
-        this.objects[i].mouseover = false;
+        this.children[i].mouseover = false;
       }
     }
   };
@@ -71,14 +76,14 @@ function Scene(){
 
   this.showOverlay = function(imagePath){
     var overlay = new SpriteSimple(0, 0, imagePath);
-    this.objects.push(overlay);
+    this.addChild(overlay);
 
     var closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
     closeButton.click = function(){
-      scene.objects.pop();
-      scene.objects.pop();
+      scene.children.pop();
+      scene.children.pop();
     };
     closeButton.tooltip = "Close";
-    this.objects.push(closeButton);
+    this.addChild(closeButton);
   };
 }
