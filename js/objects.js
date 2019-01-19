@@ -100,11 +100,11 @@ function SpriteAnimated(x, y, imagePaths){
 
   // Methods
   this.render = function(context){
-    for (var i = 0; i < this.children.length; i++){
-      this.children[i].render(context);
-    }
     if (this.frames.length > this.frame){
       context.drawImage(this.frames[this.frame], this.x, this.y);
+    }
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].render(context);
     }
   };
 
