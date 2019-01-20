@@ -11,7 +11,13 @@ function Entity(x, y){
 
   // Methods
   this.render = function(context){};
-  this.update = function(){};
+  this.animate = function(){};
+  this.update = function(){
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].update();
+    }
+    this.animate();
+  };
   this.checkMouseover = function(x, y){
     // Check mouseover state for this object
     if (this.isMouseInBounds(x, y)){
@@ -110,6 +116,29 @@ function SpriteAnimated(x, y, imagePaths){
 
   this.isMouseInBounds = function(x, y){
     return (x >= this.x) && (y >= this.y) && (x < this.x + this.frames[this.frame].width) && (y < this.y + this.frames[this.frame].height);
+  };
+}
+
+
+// Text object
+TextSimple.prototype = new Entity();
+TextSimple.constructor = TextSimple;
+
+function TextSimple(x, y, text){
+  // Initialize
+  Entity.call(this, x, y);
+
+  // Properties
+  this.text = text;
+  this.color = "black";
+
+  // Methods
+  this.render = function(context){
+    png_font.drawText(this.text, [x, y], this.color);
+  };
+
+  this.isMouseInBounds = function(x, y){
+    return (x >= this.x) && (y >= this.y) && (x < this.x + (this.text.length * 8)) && (y < this.y + 16);
   };
 }
 

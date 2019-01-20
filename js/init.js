@@ -21,6 +21,13 @@ function createSceneObjects(){
     // Page 1
     var nb1 = new OverlaySimple("Norseboard (1/3)");
 
+    var testText = new TextSimple(100, 100, "Test");
+    testText.animate = function(){
+      if (this.mouseover) this.color = "red";
+      else this.color = "black";
+    }
+    nb1.addChild(testText);
+
     // Page 2
     var nb2 = new OverlaySimple("Norseboard (2/3)");
 
