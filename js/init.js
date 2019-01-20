@@ -51,6 +51,9 @@ function createSceneObjects(){
 
   var videosphere = new SpriteSimple(73, 80, 'img/videosphere.png');
 
+  var projecttoon = new SpriteSimple(37, 129, 'img/projecttoon.png');
+  projecttoon.tooltip = "Project T.O.O.N.";
+
   var icon1 = new SpriteSimple(41, 33, 'img/icon-youtube.png');
   icon1.click = function(){
     navigate('https://www.youtube.com/milesflavel', true);
@@ -86,6 +89,7 @@ function createSceneObjects(){
   scene.addChild(n64);
   scene.addChild(norseboard);
   scene.addChild(videosphere);
+  scene.addChild(projecttoon);
 
   scene.addChild(icon1);
   scene.addChild(icon2);
