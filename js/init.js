@@ -19,33 +19,17 @@ function createSceneObjects(){
   var norseboard = new SpriteSimple(38, 104, 'img/norseboard.png');
   norseboard.click = function(){
     // Page 1
-    var nb1 = new OverlaySimple("Norseboard (1/2)");
-    var nb1ButtonNext = new SpriteSimple(290, 170, 'img/overlay-button-next.png');
-    nb1ButtonNext.click = function(){
-      this.parent.dispose();
-      scene.addChild(nb2);
-    };
-    nb1ButtonNext.tooltip = "Next";
-    nb1.addChild(nb1ButtonNext);
+    var nb1 = new OverlaySimple("Norseboard (1/3)");
 
     // Page 2
-    var nb2 = new OverlaySimple("Norseboard (2/2)");
-    var nb2ButtonNext = new SpriteSimple(290, 170, 'img/overlay-button-next.png');
-    nb2ButtonNext.click = function(){
-      this.parent.dispose();
-    };
-    nb2ButtonNext.tooltip = "Next";
-    var nb2ButtonPrev = new SpriteSimple(272, 170, 'img/overlay-button-previous.png');
-    nb2ButtonPrev.click = function(){
-      this.parent.dispose();
-      scene.addChild(nb1);
-    };
-    nb2ButtonPrev.tooltip = "Previous";
-    nb2.addChild(nb2ButtonPrev);
-    nb2.addChild(nb2ButtonNext);
+    var nb2 = new OverlaySimple("Norseboard (2/3)");
 
-    // Append the first page to scene
-    //scene.addChild(nb1);
+    // Page 3
+    var nb3 = new OverlaySimple("Norseboard (3/3)");
+
+    var norseboardOverlay = new OverlayPaginated([nb1, nb2, nb3]);
+
+    scene.addChild(norseboardOverlay);
   }
   norseboard.tooltip = "Norseboard";
 

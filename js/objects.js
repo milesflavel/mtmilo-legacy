@@ -126,12 +126,12 @@ function OverlaySimple(title){
   this.tooltip = title;
 
   // Default children
-  var closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
-  closeButton.click = function(){
+  this.closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
+  this.closeButton.click = function(){
     this.parent.dispose();
   };
-  closeButton.tooltip = "Close";
-  this.addChild(closeButton);
+  this.closeButton.tooltip = "Close";
+  this.addChild(this.closeButton);
 
   // Methods
   this.render = function(context){
@@ -164,12 +164,12 @@ function OverlayImage(title, imagePath){
   this.image.src = imagePath + "?" + version;
 
   // Default children
-  var closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
-  closeButton.click = function(){
+  this.closeButton = new SpriteSimple(300, 3, 'img/overlay-button-close.png');
+  this.closeButton.click = function(){
     this.parent.dispose();
   };
-  closeButton.tooltip = "Close";
-  this.addChild(closeButton);
+  this.closeButton.tooltip = "Close";
+  this.addChild(this.closeButton);
 
   // Methods
   this.render = function(context){
@@ -182,4 +182,66 @@ function OverlayImage(title, imagePath){
   this.isMouseInBounds = function(x, y){
     return true;
   };
+}
+
+
+// Full page paginated blank overlay
+OverlayPaginated.prototype = new Entity();
+OverlayPaginated.constructor = OverlayPaginated;
+
+function OverlayPaginated(overlays){
+  // Initialize
+  Entity.call(this, 0, 0);
+
+  // Properties
+  this.page = 0;
+  this.pages = new Array();
+  for (var i = 0; i < overlays.length; i++){
+    overlays[i].closeButton.click = function(){
+      this.parent.parent.dispose();
+    };
+    this.pages.push(overlays[i]);
+  }
+
+  // Methods
+  this.render = function(context){
+    scene.context.fillStyle = "black";
+    scene.context.fillRect(11, 11, 298, 178);
+    scene.context.fillStyle = "white";
+    scene.context.fillRect(12, 12, 296, 176);
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].render(context);
+    }
+  };
+
+  this.isMouseInBounds = function(x, y){
+    return true;
+  };
+
+  this.setPage = function(page){
+    this.children = new Array();
+    this.addChild(this.pages[page]);
+    this.page = page;
+
+    if (page > 0){
+      var prevButton = new SpriteSimple(272, 170, 'img/overlay-button-previous.png');
+      prevButton.click = function(){
+        this.parent.setPage(this.parent.page - 1);
+      };
+      prevButton.tooltip = "Previous";
+      this.addChild(prevButton);
+    }
+
+    if (page < this.pages.length - 1){
+      var nextButton = new SpriteSimple(290, 170, 'img/overlay-button-next.png');
+      nextButton.click = function(){
+        this.parent.setPage(this.parent.page + 1);
+      };
+      nextButton.tooltip = "Next";
+      this.addChild(nextButton);
+    }
+  };
+
+  // Set the first page
+  this.setPage(0);
 }
