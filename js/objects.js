@@ -120,7 +120,33 @@ function SpriteAnimated(x, y, imagePaths){
 }
 
 
-// Text object
+// Image object for overlays
+ImageSimple.prototype = new Entity();
+ImageSimple.constructor = ImageSimple;
+
+function ImageSimple(x, y, imagePath){
+  // Initialize
+  Entity.call(this, x, y);
+
+  // Properties
+  this.image = new Image();
+  this.image.src = imagePath + "?" + version;
+
+  // Methods
+  this.render = function(context){
+    context.drawImage(this.image, this.x, this.y);
+    for (var i = 0; i < this.children.length; i++){
+      this.children[i].render(context);
+    }
+  };
+
+  this.isMouseInBounds = function(x, y){
+    return false;
+  };
+}
+
+
+// Text object for overlays
 TextSimple.prototype = new Entity();
 TextSimple.constructor = TextSimple;
 
@@ -147,7 +173,7 @@ function TextSimple(x, y, text, width, height){
 }
 
 
-// Clickable text object
+// Clickable text object for overlays
 TextClickable.prototype = new Entity();
 TextClickable.constructor = TextClickable;
 
@@ -198,6 +224,7 @@ function OverlaySimple(title){
     for (var i = 0; i < this.children.length; i++){
       this.children[i].render(context);
     }
+    this.closeButton.render(context); // Technically this renders twice, but it ensures it's on top
   };
 
   this.isMouseInBounds = function(x, y){
