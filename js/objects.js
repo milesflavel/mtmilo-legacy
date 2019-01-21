@@ -124,7 +124,34 @@ function SpriteAnimated(x, y, imagePaths){
 TextSimple.prototype = new Entity();
 TextSimple.constructor = TextSimple;
 
-function TextSimple(x, y, text){
+function TextSimple(x, y, text, width, height){
+  // Initialize
+  Entity.call(this, x, y);
+
+  // Properties
+  this.text = text;
+  this.color = "black";
+  this.wrap = null;
+  if (width != null & height != null){
+    this.wrap = [width, height, 0];
+  }
+
+  // Methods
+  this.render = function(context){
+    png_font.drawText(this.text, [x, y], this.color, null, null, this.wrap);
+  };
+
+  this.isMouseInBounds = function(x, y){
+    return false;
+  };
+}
+
+
+// Clickable text object
+TextClickable.prototype = new Entity();
+TextClickable.constructor = TextClickable;
+
+function TextClickable(x, y, text){
   // Initialize
   Entity.call(this, x, y);
 
