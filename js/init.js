@@ -72,6 +72,22 @@ function createSceneObjects(){
   icon4.tvframe = 4;
   icon4.tooltip = "Instagram";
 
+  // Cameras
+  var cam_1_1 = new SpriteSimple(211, 32, 'img/cameras/1-1.png');
+  cam_1_1.tooltip = "Rolleiflex";
+  var cam_1_2 = new SpriteSimple(211, 45, 'img/cameras/1-2.png');
+  cam_1_2.tooltip = "Yashica";
+  var cam_1_3 = new SpriteSimple(211, 60, 'img/cameras/1-3.png');
+  cam_1_3.tooltip = "Lubitel";
+  var cam_1_4 = new SpriteSimple(211, 71, 'img/cameras/1-4.png');
+  cam_1_4.tooltip = "Yashica";
+  var cam_1_5 = new SpriteSimple(210, 87, 'img/cameras/1-5.png');
+  cam_1_5.tooltip = "Hasselblad";
+  var cam_1_6 = new SpriteSimple(209, 99, 'img/cameras/1-6.png');
+  cam_1_6.tooltip = "";
+  var cam_1_7 = new SpriteSimple(209, 111, 'img/cameras/1-7.png');
+  cam_1_7.tooltip = "";
+
   scene.addChild(background);
   scene.addChild(map);
   scene.addChild(tv);
@@ -80,6 +96,14 @@ function createSceneObjects(){
   scene.addChild(norseboard);
   scene.addChild(videosphere);
   scene.addChild(projecttoon);
+
+  scene.addChild(cam_1_1);
+  scene.addChild(cam_1_2);
+  scene.addChild(cam_1_3);
+  scene.addChild(cam_1_4);
+  scene.addChild(cam_1_5);
+  scene.addChild(cam_1_6);
+  scene.addChild(cam_1_7);
 
   scene.addChild(icon1);
   scene.addChild(icon2);
