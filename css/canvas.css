@@ -5,6 +5,17 @@ body {
   background-image: linear-gradient(#321964, #140a29);
 }
 
+body::after {
+  content: "This site is designed to be viewed on a modern browser in approximately a 4:3 aspect ratio";
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Arsenal';
+  font-size: 16px;
+  color: grey;
+}
+
 #canvas-container {
   width: 100%;
   height: 100vh;
@@ -24,10 +35,12 @@ canvas {
   cursor: none;
 
   /* Enable Nearest Neighbor scaling algorithm */
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-crisp-edges;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+  image-rendering: optimizeSpeed;             /* Older versions of FF          */
+  image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+  image-rendering: -webkit-optimize-contrast; /* Safari                        */
+  image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+  image-rendering: pixelated;                 /* Awesome future-browsers       */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
 }
 
 /* Scale canvas with responsive conditions to manage pixel sizing */
