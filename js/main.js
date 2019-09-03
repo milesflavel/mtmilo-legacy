@@ -1,4 +1,4 @@
-var version = 6;
+var version = 7;
 var scene, lastTimestamp;
 
 // Function to initiate the scene and begin the draw routine
