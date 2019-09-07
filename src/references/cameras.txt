@@ -1,8 +1,8 @@
-1-1   Rolleiflex f/3.5
+1-1   Rolleiflex 3.5
 1-2   Yashica A
 1-3   Lubitel 166
 1-4   Yashica 635
-1-5   Hasselblad 500c
+1-5   Hasselblad 500C
 1-6   Adox Golf
 1-7   Kodak Brownie Flash III
 1-8   Kodak Instamatic 104

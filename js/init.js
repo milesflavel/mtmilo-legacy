@@ -74,19 +74,19 @@ function createSceneObjects(){
 
   // Cameras
   var cam_1_1 = new SpriteSimple(211, 32, 'img/cameras/1-1.png');
-  cam_1_1.tooltip = "Rolleiflex";
+  cam_1_1.tooltip = "Rolleiflex 3.5";
   var cam_1_2 = new SpriteSimple(211, 45, 'img/cameras/1-2.png');
-  cam_1_2.tooltip = "Yashica";
+  cam_1_2.tooltip = "Yashica A";
   var cam_1_3 = new SpriteSimple(211, 60, 'img/cameras/1-3.png');
-  cam_1_3.tooltip = "Lubitel";
+  cam_1_3.tooltip = "Lubitel 166";
   var cam_1_4 = new SpriteSimple(211, 71, 'img/cameras/1-4.png');
-  cam_1_4.tooltip = "Yashica";
+  cam_1_4.tooltip = "Yashica 635";
   var cam_1_5 = new SpriteSimple(210, 87, 'img/cameras/1-5.png');
-  cam_1_5.tooltip = "Hasselblad";
+  cam_1_5.tooltip = "Hasselblad 500C";
   var cam_1_6 = new SpriteSimple(209, 99, 'img/cameras/1-6.png');
-  cam_1_6.tooltip = "";
+  cam_1_6.tooltip = "Adox Golf";
   var cam_1_7 = new SpriteSimple(209, 111, 'img/cameras/1-7.png');
-  cam_1_7.tooltip = "";
+  cam_1_7.tooltip = "Kodak Brownie Flash III";
 
   scene.addChild(background);
   scene.addChild(map);
