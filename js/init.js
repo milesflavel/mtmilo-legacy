@@ -87,6 +87,16 @@ function createSceneObjects(){
   cam_1_6.tooltip = "Adox Golf";
   var cam_1_7 = new SpriteSimple(209, 111, 'img/cameras/1-7.png');
   cam_1_7.tooltip = "Kodak Brownie Flash III";
+  var cam_1_8 = new SpriteSimple(211, 127, 'img/cameras/1-8.png');
+  cam_1_8.tooltip = "Kodak Instamatic 104";
+  var cam_1_9 = new SpriteSimple(210, 140, 'img/cameras/1-9.png');
+  cam_1_9.tooltip = "Minox 35 EL";
+  var cam_1_10 = new SpriteSimple(209, 151, 'img/cameras/1-10.png');
+  cam_1_10.tooltip = "Zeiss Ikon Contina";
+  var cam_1_11 = new SpriteSimple(210, 164, 'img/cameras/1-11.png');
+  cam_1_11.tooltip = "Zenit 12 XP";
+  var cam_1_12 = new SpriteSimple(210, 178, 'img/cameras/1-12.png');
+  cam_1_12.tooltip = "Minolta X-300";
 
   scene.addChild(background);
   scene.addChild(map);
@@ -104,6 +114,11 @@ function createSceneObjects(){
   scene.addChild(cam_1_5);
   scene.addChild(cam_1_6);
   scene.addChild(cam_1_7);
+  scene.addChild(cam_1_8);
+  scene.addChild(cam_1_9);
+  scene.addChild(cam_1_10);
+  scene.addChild(cam_1_11);
+  scene.addChild(cam_1_12);
 
   scene.addChild(icon1);
   scene.addChild(icon2);
