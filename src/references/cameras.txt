@@ -1,0 +1,64 @@
+1-1   Rolleiflex f/3.5
+1-2   Yashica A
+1-3   Lubitel 166
+1-4   Yashica 635
+1-5   Hasselblad 500c
+1-6   Adox Golf
+1-7   Kodak Brownie Flash III
+1-8   Kodak Instamatic 104
+1-9   Monox 35 EL
+1-10  Zeiss Ikon Contina
+1-11  Zenit 12 XP
+1-12  Minolta X-300
+
+2-1   Olympus OM-1
+2-2   Olympus OM-1
+2-3   Olympus OM-10
+2-4   Olympus OM-30
+2-5   Yashica Electro 35 GSN
+2-6   Yashica Minister III
+2-7   Fujica STX-1
+2-8   Practika Super TL 1000
+2-9   Practika LTL
+2-10  Practika LTL
+2-11  Ricoh Singlex TLS
+2-12  Cimko LS-1
+
+3-1   Canon Canonet G-III QL17
+3-2   Canon Canonet QL19
+3-3   Canon Canonet QL19
+3-4   Canon Canonet
+3-5   Canon Canonet
+3-6   Canon Canonet Junior
+3-7   Canon AE-1
+3-8   Canon AE-1
+3-9   Canon AE-1
+3-10  Canon FTb QL
+3-11  Canon FT QL
+3-12  Canon F-1
+
+4-1   Pentax MX
+4-2   Pentax MG
+4-3   Pentax MG
+4-4   Pentax MG
+4-5   Pentax ME Super
+4-6   Pentax Super A
+4-7   Pentax MV1
+4-8   Pentax MV
+4-9   Pentax KM
+4-10  Pentax ES II
+4-11  Pentax ES II
+4-12  Ricoh KR-10 Super
+
+5-1   Wirgin Edixa Reflex
+5-2   Minolta Electro Shot
+5-3   Minolta Hi-Matic 7s
+5-4   Minolta SR-T 101
+5-5   Minolta SR-T 101
+5-6   Minolta SR-T 303
+5-7   Minolta X-700
+5-8   Minolta XG 9
+5-9   Konica Autoreflex T
+5-10  Mamiya/Sekor 1000 DTL
+5-11  Mamiya/Sekor 500 TL
+5-12  Mamiya CWP
