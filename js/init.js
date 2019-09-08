@@ -1,5 +1,7 @@
 function createSceneObjects(){
   var background = new SpriteSimple(0, 0, 'img/background.png');
+  var moustache = new SpriteSimple(176, 4, 'img/moustache.png');
+  var bookshelves = new SpriteSimple(32, 24, 'img/bookshelves.png');
 
   var tv = new SpriteSimple(107, 63, 'img/tv.png');
   var tvscreen = new SpriteAnimated(109, 65, ['img/tv-off.png', 'img/tv-lessthanthree.png', 'img/tv-twitch.png', 'img/tv-twitter.png', 'img/tv-instagram.png', 'img/tv-usa.png']);
@@ -99,6 +101,8 @@ function createSceneObjects(){
   cam_1_12.tooltip = "Minolta X-300";
 
   scene.addChild(background);
+  scene.addChild(moustache);
+  scene.addChild(bookshelves);
   scene.addChild(map);
   scene.addChild(tv);
   scene.addChild(tvscreen);
