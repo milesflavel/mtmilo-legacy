@@ -1,6 +1,8 @@
 function createSceneObjects(){
   var background = new SpriteSimple(0, 0, 'img/background.png');
   var moustache = new SpriteSimple(176, 4, 'img/moustache.png');
+  moustache.tooltip = "Giant Moustache Mask";
+  var camerashelves = new SpriteSimple(205, 30, 'img/camerashelves.png');
   var bookshelves = new SpriteSimple(32, 24, 'img/bookshelves.png');
 
   var tv = new SpriteSimple(107, 63, 'img/tv.png');
@@ -99,9 +101,18 @@ function createSceneObjects(){
   cam_1_11.tooltip = "Zenit 12 XP";
   var cam_1_12 = new SpriteSimple(210, 178, 'img/cameras/1-12.png');
   cam_1_12.tooltip = "Minolta X-300";
+  var cam_2_1 = new SpriteSimple(225, 36, 'img/cameras/2-1.png');
+  cam_2_1.tooltip = "Olympus OM-1";
+  var cam_2_2 = new SpriteSimple(225, 49, 'img/cameras/2-2.png');
+  cam_2_2.tooltip = "Olympus OM-1";
+  var cam_2_3 = new SpriteSimple(225, 62, 'img/cameras/2-3.png');
+  cam_2_3.tooltip = "Olympus OM-10";
+  var cam_2_4 = new SpriteSimple(225, 75, 'img/cameras/2-4.png');
+  cam_2_4.tooltip = "Olympus OM-30";
 
   scene.addChild(background);
   scene.addChild(moustache);
+  scene.addChild(camerashelves);
   scene.addChild(bookshelves);
   scene.addChild(map);
   scene.addChild(tv);
@@ -123,6 +134,10 @@ function createSceneObjects(){
   scene.addChild(cam_1_10);
   scene.addChild(cam_1_11);
   scene.addChild(cam_1_12);
+  scene.addChild(cam_2_1);
+  scene.addChild(cam_2_2);
+  scene.addChild(cam_2_3);
+  scene.addChild(cam_2_4);
 
   scene.addChild(icon1);
   scene.addChild(icon2);
