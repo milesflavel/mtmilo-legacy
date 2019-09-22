@@ -48,34 +48,6 @@ function createSceneObjects(){
   var projecttoon = new SpriteSimple(37, 129, 'img/projecttoon.png');
   projecttoon.tooltip = "Project T.O.O.N.";
 
-  var icon1 = new SpriteSimple(41, 33, 'img/icon-youtube.png');
-  icon1.click = function(){
-    navigate('https://www.youtube.com/milesflavel', true);
-  };
-  icon1.tvframe = 1;
-  icon1.tooltip = "My Milo Show (YouTube)";
-
-  var icon2 = new SpriteSimple(77, 33, 'img/icon-twitch.png');
-  icon2.click = function(){
-    navigate('https://www.twitch.tv/mtmilo', true);
-  };
-  icon2.tvframe = 2;
-  icon2.tooltip = "Twitch Stream";
-
-  var icon3 = new SpriteSimple(43, 59, 'img/icon-twitter.png');
-  icon3.click = function(){
-    navigate('https://twitter.com/MilesFlavel', true);
-  };
-  icon3.tvframe = 3;
-  icon3.tooltip = "Milo on Twitter";
-
-  var icon4 = new SpriteSimple(76, 56, 'img/icon-instagram.png');
-  icon4.click = function(){
-    navigate('https://instagram.com/milesflavel', true);
-  };
-  icon4.tvframe = 4;
-  icon4.tooltip = "Instagram";
-
   scene.addChild(background);
   scene.addChild(moustache);
   scene.addChild(camerashelves);
@@ -88,34 +60,52 @@ function createSceneObjects(){
   scene.addChild(videosphere);
   scene.addChild(projecttoon);
 
-  // Cameras
-  addCamera(211, 32, 1, 1, "Rolleiflex 3.5")
-  addCamera(211, 45, 1, 2, "Yashica A")
-  addCamera(211, 60, 1, 3, "Lubitel 166")
-  addCamera(211, 71, 1, 4, "Yashica 635");
-  addCamera(210, 87, 1, 5, "Hasselblad 500C");
-  addCamera(209, 99, 1, 6, "Adox Golf");
-  addCamera(209, 111, 1 ,7, "Kodak Brownie Flash III");
-  addCamera(211, 127, 1, 8, "Kodak Instamatic 104");
-  addCamera(210, 140, 1, 9, "Minox 35 EL");
+  addCameras();
+  addSocialIcons();
+
+  scene.tvscreen = tvscreen;
+}
+
+// Cameras
+function addCameras(){
+  addCamera(211, 32,  1, 1,  "Rolleiflex 3.5")
+  addCamera(211, 45,  1, 2,  "Yashica A")
+  addCamera(211, 60,  1, 3,  "Lubitel 166")
+  addCamera(211, 71,  1, 4,  "Yashica 635");
+  addCamera(210, 87,  1, 5,  "Hasselblad 500C");
+  addCamera(209, 99,  1, 6,  "Adox Golf");
+  addCamera(209, 111, 1 ,7,  "Kodak Brownie Flash III");
+  addCamera(211, 127, 1, 8,  "Kodak Instamatic 104");
+  addCamera(210, 140, 1, 9,  "Minox 35 EL");
   addCamera(209, 151, 1, 10, "Zeiss Ikon Contina");
   addCamera(210, 164, 1, 11, "Zenit 12 XP");
   addCamera(210, 178, 1, 12, "Minolta X-300");
-  addCamera(225, 36, 2, 1, "Olympus OM-1");
-  addCamera(225, 49, 2, 2, "Olympus OM-1");
-  addCamera(225, 62, 2, 3, "Olympus OM-10");
-  addCamera(225, 75, 2, 4, "Olympus OM-30");
-
-  scene.addChild(icon1);
-  scene.addChild(icon2);
-  scene.addChild(icon3);
-  scene.addChild(icon4);
-
-  scene.tvscreen = tvscreen;
+  addCamera(225, 36,  2, 1,  "Olympus OM-1");
+  addCamera(225, 49,  2, 2,  "Olympus OM-1");
+  addCamera(225, 62,  2, 3,  "Olympus OM-10");
+  addCamera(225, 75,  2, 4,  "Olympus OM-30");
 }
 
 function addCamera(x, y, column, row, tooltip){
   var camera = new SpriteSimple(x, y, 'img/cameras/' + column + '-' + row + '.png');
   camera.tooltip = tooltip;
   scene.addChild(camera);
+}
+
+// Social media
+function addSocialIcons(){
+  addSocialIcon(41, 33, 1, 'youtube', 'https://www.youtube.com/milesflavel', "My Milo Show (YouTube)")
+  addSocialIcon(77, 33, 2, 'twitch', 'https://www.twitch.tv/mtmilo', "Twitch Stream")
+  addSocialIcon(43, 59, 3, 'twitter', 'https://twitter.com/MilesFlavel', "Milo on Twitter")
+  addSocialIcon(76, 56, 4, 'instagram', 'https://instagram.com/milesflavel', "Instagram")
+}
+
+function addSocialIcon(x, y, tvframe, name, url, tooltip){
+  var icon = new SpriteSimple(x, y, 'img/icon-' + name + '.png');
+  icon.click = function(){
+    navigate(url, true);
+  };
+  icon.tvframe = tvframe;
+  icon.tooltip = tooltip;
+  scene.addChild(icon);
 }
