@@ -76,40 +76,6 @@ function createSceneObjects(){
   icon4.tvframe = 4;
   icon4.tooltip = "Instagram";
 
-  // Cameras
-  var cam_1_1 = new SpriteSimple(211, 32, 'img/cameras/1-1.png');
-  cam_1_1.tooltip = "Rolleiflex 3.5";
-  var cam_1_2 = new SpriteSimple(211, 45, 'img/cameras/1-2.png');
-  cam_1_2.tooltip = "Yashica A";
-  var cam_1_3 = new SpriteSimple(211, 60, 'img/cameras/1-3.png');
-  cam_1_3.tooltip = "Lubitel 166";
-  var cam_1_4 = new SpriteSimple(211, 71, 'img/cameras/1-4.png');
-  cam_1_4.tooltip = "Yashica 635";
-  var cam_1_5 = new SpriteSimple(210, 87, 'img/cameras/1-5.png');
-  cam_1_5.tooltip = "Hasselblad 500C";
-  var cam_1_6 = new SpriteSimple(209, 99, 'img/cameras/1-6.png');
-  cam_1_6.tooltip = "Adox Golf";
-  var cam_1_7 = new SpriteSimple(209, 111, 'img/cameras/1-7.png');
-  cam_1_7.tooltip = "Kodak Brownie Flash III";
-  var cam_1_8 = new SpriteSimple(211, 127, 'img/cameras/1-8.png');
-  cam_1_8.tooltip = "Kodak Instamatic 104";
-  var cam_1_9 = new SpriteSimple(210, 140, 'img/cameras/1-9.png');
-  cam_1_9.tooltip = "Minox 35 EL";
-  var cam_1_10 = new SpriteSimple(209, 151, 'img/cameras/1-10.png');
-  cam_1_10.tooltip = "Zeiss Ikon Contina";
-  var cam_1_11 = new SpriteSimple(210, 164, 'img/cameras/1-11.png');
-  cam_1_11.tooltip = "Zenit 12 XP";
-  var cam_1_12 = new SpriteSimple(210, 178, 'img/cameras/1-12.png');
-  cam_1_12.tooltip = "Minolta X-300";
-  var cam_2_1 = new SpriteSimple(225, 36, 'img/cameras/2-1.png');
-  cam_2_1.tooltip = "Olympus OM-1";
-  var cam_2_2 = new SpriteSimple(225, 49, 'img/cameras/2-2.png');
-  cam_2_2.tooltip = "Olympus OM-1";
-  var cam_2_3 = new SpriteSimple(225, 62, 'img/cameras/2-3.png');
-  cam_2_3.tooltip = "Olympus OM-10";
-  var cam_2_4 = new SpriteSimple(225, 75, 'img/cameras/2-4.png');
-  cam_2_4.tooltip = "Olympus OM-30";
-
   scene.addChild(background);
   scene.addChild(moustache);
   scene.addChild(camerashelves);
@@ -122,22 +88,23 @@ function createSceneObjects(){
   scene.addChild(videosphere);
   scene.addChild(projecttoon);
 
-  scene.addChild(cam_1_1);
-  scene.addChild(cam_1_2);
-  scene.addChild(cam_1_3);
-  scene.addChild(cam_1_4);
-  scene.addChild(cam_1_5);
-  scene.addChild(cam_1_6);
-  scene.addChild(cam_1_7);
-  scene.addChild(cam_1_8);
-  scene.addChild(cam_1_9);
-  scene.addChild(cam_1_10);
-  scene.addChild(cam_1_11);
-  scene.addChild(cam_1_12);
-  scene.addChild(cam_2_1);
-  scene.addChild(cam_2_2);
-  scene.addChild(cam_2_3);
-  scene.addChild(cam_2_4);
+  // Cameras
+  addCamera(211, 32, 1, 1, "Rolleiflex 3.5")
+  addCamera(211, 45, 1, 2, "Yashica A")
+  addCamera(211, 60, 1, 3, "Lubitel 166")
+  addCamera(211, 71, 1, 4, "Yashica 635");
+  addCamera(210, 87, 1, 5, "Hasselblad 500C");
+  addCamera(209, 99, 1, 6, "Adox Golf");
+  addCamera(209, 111, 1 ,7, "Kodak Brownie Flash III");
+  addCamera(211, 127, 1, 8, "Kodak Instamatic 104");
+  addCamera(210, 140, 1, 9, "Minox 35 EL");
+  addCamera(209, 151, 1, 10, "Zeiss Ikon Contina");
+  addCamera(210, 164, 1, 11, "Zenit 12 XP");
+  addCamera(210, 178, 1, 12, "Minolta X-300");
+  addCamera(225, 36, 2, 1, "Olympus OM-1");
+  addCamera(225, 49, 2, 2, "Olympus OM-1");
+  addCamera(225, 62, 2, 3, "Olympus OM-10");
+  addCamera(225, 75, 2, 4, "Olympus OM-30");
 
   scene.addChild(icon1);
   scene.addChild(icon2);
@@ -145,4 +112,10 @@ function createSceneObjects(){
   scene.addChild(icon4);
 
   scene.tvscreen = tvscreen;
+}
+
+function addCamera(x, y, column, row, tooltip){
+  var camera = new SpriteSimple(x, y, 'img/cameras/' + column + '-' + row + '.png');
+  camera.tooltip = tooltip;
+  scene.addChild(camera);
 }
