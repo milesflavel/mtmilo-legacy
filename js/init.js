@@ -23,21 +23,21 @@ function createSceneObjects(){
   var norseboard = new SpriteSimple(38, 104, 'img/norseboard.png');
   norseboard.click = function(){
     // Page 1
-    var nb1 = new OverlaySimple("Norseboard (1/2)");
+    var nb1 = new OverlaySimple();
     nb1.addChild(new ImageSimple(12, 12, 'img/overlay-norseboard.png'));
 
     // Page 2
-    var nb2 = new OverlaySimple("Norseboard (2/2)");
+    var nb2 = new OverlaySimple();
     nb2.addChild(new TextSimple(68, 30, "The Original All-in-One"));
     nb2.addChild(new TextSimple(24, 80, "A portable keyboard, computer & gamepad for on-the-go hacking and fractal design.", 170, 140));
     nb2.addChild(new ImageSimple(200, 90, 'img/norseboard-render-1.png'));
 
     // Page 3
-    var nb3 = new OverlaySimple("Norseboard (3/3)");
+    var nb3 = new OverlaySimple();
     nb3.addChild(new TextSimple(30, 30, "Ground Zero: Where it all began"));
     nb3.addChild(new TextSimple(30, 54, "The project that cut my teeth"));
 
-    var norseboardOverlay = new OverlayPaginated([nb1, nb2]);
+    var norseboardOverlay = new OverlayPaginated("Norseboard", [nb1, nb2]);
 
     scene.addChild(norseboardOverlay);
   }

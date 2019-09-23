@@ -272,7 +272,7 @@ function OverlayImage(title, imagePath){
 OverlayPaginated.prototype = new Entity();
 OverlayPaginated.constructor = OverlayPaginated;
 
-function OverlayPaginated(overlays){
+function OverlayPaginated(title, overlays){
   // Initialize
   Entity.call(this, 0, 0);
 
@@ -283,6 +283,7 @@ function OverlayPaginated(overlays){
     overlays[i].closeButton.click = function(){
       this.parent.parent.dispose();
     };
+    overlays[i].tooltip = title + " (" + (i+1) + "/" + overlays.length + ")"
     this.pages.push(overlays[i]);
   }
 
