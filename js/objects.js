@@ -99,9 +99,20 @@ function SpriteAnimated(x, y, imagePaths){
   this.frame = 0;
   this.frames = new Array();
   for (var i = 0; i < imagePaths.length; i++){
-    var image = new Image();
-    image.src = imagePaths[i] + "?" + version;
-    this.frames.push(image);
+    if (imagePaths[i].indexOf('.mp4') !== -1){
+      var video = document.createElement('video');
+      video.src = imagePaths[i] + "?" + version;
+      video.autoplay = true;
+      video.muted = true;
+      video.controls = false;
+      video.loop = true;
+      this.frames.push(video);
+    }
+    else{
+      var image = new Image();
+      image.src = imagePaths[i] + "?" + version;
+      this.frames.push(image);
+    }
   }
 
   // Methods
