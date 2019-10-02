@@ -1,4 +1,5 @@
 function createSceneObjects(){
+  var viewSouth = new Entity(0, 0);
   var background = new SpriteSimple(0, 0, 'img/background.png');
   var moustache = new SpriteSimple(176, 4, 'img/moustache.png');
   moustache.tooltip = "Giant Moustache Mask";
@@ -6,7 +7,7 @@ function createSceneObjects(){
   var bookshelves = new SpriteSimple(32, 24, 'img/bookshelves.png');
 
   var tv = new SpriteSimple(107, 63, 'img/tv.png');
-  var tvscreen = new SpriteAnimated(109, 65, ['img/tv-off.png', 'img/tv-lessthanthree.png', 'img/tv-twitch.png', 'img/tv-twitter.png', 'img/tv-instagram.png', 'img/tv-usa.png']);
+  var tvscreen = new SpriteAnimated(109, 65, ['img/tv-off.png', 'img/tv-lessthanthree.png', 'img/tv-twitch.png', 'img/tv-twitter.png', 'img/tv-instagram.png', 'img/tv-usa.png', 'vid/n64.mp4']);
 
   var map = new SpriteSimple(107, 28, 'img/map.png')
   map.click = function(){
@@ -19,6 +20,7 @@ function createSceneObjects(){
   map.tooltip = "USA Adventures";
 
   var n64 = new SpriteSimple(145, 122, 'img/n64.png');
+  n64.tvframe = 6;
 
   var norseboard = new SpriteSimple(38, 104, 'img/norseboard.png');
   norseboard.click = function(){
@@ -48,64 +50,65 @@ function createSceneObjects(){
   var projecttoon = new SpriteSimple(37, 129, 'img/projecttoon.png');
   projecttoon.tooltip = "Project T.O.O.N.";
 
-  scene.addChild(background);
-  scene.addChild(moustache);
-  scene.addChild(camerashelves);
-  scene.addChild(bookshelves);
-  scene.addChild(map);
-  scene.addChild(tv);
-  scene.addChild(tvscreen);
-  scene.addChild(n64);
-  scene.addChild(norseboard);
-  scene.addChild(videosphere);
-  scene.addChild(projecttoon);
+  viewSouth.addChild(background);
+  viewSouth.addChild(moustache);
+  viewSouth.addChild(camerashelves);
+  viewSouth.addChild(bookshelves);
+  viewSouth.addChild(map);
+  viewSouth.addChild(tv);
+  viewSouth.addChild(tvscreen);
+  viewSouth.addChild(n64);
+  viewSouth.addChild(norseboard);
+  viewSouth.addChild(videosphere);
+  viewSouth.addChild(projecttoon);
 
-  addCameras();
-  addSocialIcons();
+  addCameras(viewSouth);
+  addSocialIcons(viewSouth);
 
   scene.tvscreen = tvscreen;
+  scene.addChild(viewSouth);
 }
 
 // Cameras
-function addCameras(){
-  addCamera(211, 32,  1, 1,  "Rolleiflex 3.5")
-  addCamera(211, 45,  1, 2,  "Yashica A")
-  addCamera(211, 60,  1, 3,  "Lubitel 166")
-  addCamera(211, 71,  1, 4,  "Yashica 635");
-  addCamera(210, 87,  1, 5,  "Hasselblad 500C");
-  addCamera(209, 99,  1, 6,  "Adox Golf");
-  addCamera(209, 111, 1 ,7,  "Kodak Brownie Flash III");
-  addCamera(211, 127, 1, 8,  "Kodak Instamatic 104");
-  addCamera(210, 140, 1, 9,  "Minox 35 EL");
-  addCamera(209, 151, 1, 10, "Zeiss Ikon Contina");
-  addCamera(210, 164, 1, 11, "Zenit 12 XP");
-  addCamera(210, 178, 1, 12, "Minolta X-300");
-  addCamera(225, 36,  2, 1,  "Olympus OM-1");
-  addCamera(225, 49,  2, 2,  "Olympus OM-1");
-  addCamera(225, 62,  2, 3,  "Olympus OM-10");
-  addCamera(225, 75,  2, 4,  "Olympus OM-30");
+function addCameras(parent){
+  addCamera(parent, 211, 32,  1, 1,  "Rolleiflex 3.5")
+  addCamera(parent, 211, 45,  1, 2,  "Yashica A")
+  addCamera(parent, 211, 60,  1, 3,  "Lubitel 166")
+  addCamera(parent, 211, 71,  1, 4,  "Yashica 635");
+  addCamera(parent, 210, 87,  1, 5,  "Hasselblad 500C");
+  addCamera(parent, 209, 99,  1, 6,  "Adox Golf");
+  addCamera(parent, 209, 111, 1 ,7,  "Kodak Brownie Flash III");
+  addCamera(parent, 211, 127, 1, 8,  "Kodak Instamatic 104");
+  addCamera(parent, 210, 140, 1, 9,  "Minox 35 EL");
+  addCamera(parent, 209, 151, 1, 10, "Zeiss Ikon Contina");
+  addCamera(parent, 210, 164, 1, 11, "Zenit 12 XP");
+  addCamera(parent, 210, 178, 1, 12, "Minolta X-300");
+  addCamera(parent, 225, 36,  2, 1,  "Olympus OM-1");
+  addCamera(parent, 225, 49,  2, 2,  "Olympus OM-1");
+  addCamera(parent, 225, 62,  2, 3,  "Olympus OM-10");
+  addCamera(parent, 225, 75,  2, 4,  "Olympus OM-30");
 }
 
-function addCamera(x, y, column, row, tooltip){
+function addCamera(parent, x, y, column, row, tooltip){
   var camera = new SpriteSimple(x, y, 'img/cameras/' + column + '-' + row + '.png');
   camera.tooltip = tooltip;
-  scene.addChild(camera);
+  parent.addChild(camera);
 }
 
 // Social media
-function addSocialIcons(){
-  addSocialIcon(41, 33, 1, 'youtube', 'https://www.youtube.com/milesflavel', "My Milo Show (YouTube)")
-  addSocialIcon(77, 33, 2, 'twitch', 'https://www.twitch.tv/mtmilo', "Twitch Stream")
-  addSocialIcon(43, 59, 3, 'twitter', 'https://twitter.com/MilesFlavel', "Milo on Twitter")
-  addSocialIcon(76, 56, 4, 'instagram', 'https://instagram.com/milesflavel', "Instagram")
+function addSocialIcons(parent){
+  addSocialIcon(parent, 41, 33, 1, 'youtube', 'https://www.youtube.com/milesflavel', "My Milo Show (YouTube)")
+  addSocialIcon(parent, 77, 33, 2, 'twitch', 'https://www.twitch.tv/mtmilo', "Twitch Stream")
+  addSocialIcon(parent, 43, 59, 3, 'twitter', 'https://twitter.com/MilesFlavel', "Milo on Twitter")
+  addSocialIcon(parent, 76, 56, 4, 'instagram', 'https://instagram.com/milesflavel', "Instagram")
 }
 
-function addSocialIcon(x, y, tvframe, name, url, tooltip){
+function addSocialIcon(parent, x, y, tvframe, name, url, tooltip){
   var icon = new SpriteSimple(x, y, 'img/icon-' + name + '.png');
   icon.click = function(){
     navigate(url, true);
   };
   icon.tvframe = tvframe;
   icon.tooltip = tooltip;
-  scene.addChild(icon);
+  parent.addChild(icon);
 }

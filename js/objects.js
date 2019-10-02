@@ -8,9 +8,16 @@ function Entity(x, y){
   this.mouseover = false;
   this.tvframe = 0;
   this.tooltip = "";
+  this.visible = true;
 
   // Methods
-  this.render = function(context){};
+  this.render = function(context){
+    if (this.visible){
+      for (var i = 0; i < this.children.length; i++){
+        this.children[i].render(context);
+      }
+    }
+  };
   this.animate = function(){};
   this.update = function(){
     for (var i = 0; i < this.children.length; i++){
@@ -19,30 +26,32 @@ function Entity(x, y){
     this.animate();
   };
   this.checkMouseover = function(x, y){
-    // Check mouseover state for this object
-    if (this.isMouseInBounds(x, y)){
-      if (scene.mouseover) {
-        scene.mouseover.mouseover = false;
-      }
-      scene.mouseover = this;
-      scene.mouseover.mouseover = true;
-    }
-    else{
-      this.mouseover = false;
-    }
-    // Now check mouseover state for this object's children
-    for (var i = 0; i < this.children.length; i++){
-      if (this.children[i].isMouseInBounds(x, y)){
+    if (this.visible){
+      // Check mouseover state for this object
+      if (this.isMouseInBounds(x, y)){
         if (scene.mouseover) {
           scene.mouseover.mouseover = false;
         }
-        scene.mouseover = this.children[i];
+        scene.mouseover = this;
         scene.mouseover.mouseover = true;
       }
       else{
-        this.children[i].mouseover = false;
+        this.mouseover = false;
       }
-      this.children[i].checkMouseover(x, y);
+      // Now check mouseover state for this object's children
+      for (var i = 0; i < this.children.length; i++){
+        if (this.children[i].isMouseInBounds(x, y)){
+          if (scene.mouseover) {
+            scene.mouseover.mouseover = false;
+          }
+          scene.mouseover = this.children[i];
+          scene.mouseover.mouseover = true;
+        }
+        else{
+          this.children[i].mouseover = false;
+        }
+        this.children[i].checkMouseover(x, y);
+      }
     }
   };
   this.isMouseInBounds = function(x, y){};
