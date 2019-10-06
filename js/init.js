@@ -1,73 +1,109 @@
 function createSceneObjects(){
-  var viewSouth = new Entity(0, 0);
-  var background = new SpriteSimple(0, 0, 'img/background.png');
-  var moustache = new SpriteSimple(176, 4, 'img/moustache.png');
-  moustache.tooltip = "Giant Moustache Mask";
-  var camerashelves = new SpriteSimple(205, 30, 'img/camerashelves.png');
-  var bookshelves = new SpriteSimple(32, 24, 'img/bookshelves.png');
+  var viewSouth = createViewSouth();
+  var viewWest = createViewWest();
 
-  var tv = new SpriteSimple(107, 63, 'img/tv.png');
-  var tvscreen = new SpriteAnimated(109, 65, ['img/tv-off.png', 'img/tv-lessthanthree.png', 'img/tv-twitch.png', 'img/tv-twitter.png', 'img/tv-instagram.png', 'img/tv-usa.png', 'vid/n64.mp4']);
+  var navigation = new NavigationSimple([viewSouth]);//, viewWest]);
 
-  var map = new SpriteSimple(107, 28, 'img/map.png')
-  map.click = function(){
-    var placeSynonyms = ['Places', 'States', 'Areas', 'Cities', 'Communities', 'Corners', 'Districts', 'Fields', 'Neighborhoods', 'Parts', 'Points', 'Regions', 'Sites', 'Spots', 'Towns', 'Venues', 'Villages', 'Zones', 'Habitats', 'Latitudes', 'Locales', 'Localities', 'Longitudes', 'Niches', 'Nooks', 'Sections', 'Suburbs', 'Vicinities', 'Whereabouts'];
-    var seenSynonyms = ['seen', 'been', 'examined', 'looked at', 'noticed', 'observed', 'regarded', 'spotted', 'viewed', 'watched', 'witnessed', 'contemplated', 'eyed off', 'gawked at', 'gazed upon', 'glimpsed', 'inspected', 'marked', 'minded', 'noted', 'peeked into', 'peered at', 'scoped out', 'scrutinized', 'stared at', 'surveyed', 'layed eyes on', 'taken notice of']
-    var title = placeSynonyms[Math.floor(Math.random() * Math.floor(placeSynonyms.length))] + " I've " + seenSynonyms[Math.floor(Math.random() * Math.floor(seenSynonyms.length))];
-    scene.addChild(new OverlayImage(title, 'img/overlay-map.png'));
-  };
-  map.tvframe = 5;
-  map.tooltip = "USA Adventures";
-
-  var n64 = new SpriteSimple(145, 122, 'img/n64.png');
-  n64.tvframe = 6;
-
-  var norseboard = new SpriteSimple(38, 104, 'img/norseboard.png');
-  norseboard.click = function(){
-    // Page 1
-    var nb1 = new OverlaySimple();
-    nb1.addChild(new ImageSimple(12, 12, 'img/overlay-norseboard.png'));
-
-    // Page 2
-    var nb2 = new OverlaySimple();
-    nb2.addChild(new TextSimple(68, 30, "The Original All-in-One"));
-    nb2.addChild(new TextSimple(24, 80, "A portable keyboard, computer & gamepad for on-the-go hacking and fractal design.", 170, 140));
-    nb2.addChild(new ImageSimple(200, 90, 'img/norseboard-render-1.png'));
-
-    // Page 3
-    var nb3 = new OverlaySimple();
-    nb3.addChild(new TextSimple(30, 30, "Ground Zero: Where it all began"));
-    nb3.addChild(new TextSimple(30, 54, "The project that cut my teeth"));
-
-    var norseboardOverlay = new OverlayPaginated("Norseboard", [nb1, nb2]);
-
-    scene.addChild(norseboardOverlay);
-  }
-  norseboard.tooltip = "Norseboard";
-
-  var videosphere = new SpriteSimple(73, 80, 'img/videosphere.png');
-
-  var projecttoon = new SpriteSimple(37, 129, 'img/projecttoon.png');
-  projecttoon.tooltip = "Project T.O.O.N.";
-
-  viewSouth.addChild(background);
-  viewSouth.addChild(moustache);
-  viewSouth.addChild(camerashelves);
-  viewSouth.addChild(bookshelves);
-  viewSouth.addChild(map);
-  viewSouth.addChild(tv);
-  viewSouth.addChild(tvscreen);
-  viewSouth.addChild(n64);
-  viewSouth.addChild(norseboard);
-  viewSouth.addChild(videosphere);
-  viewSouth.addChild(projecttoon);
-
-  addCameras(viewSouth);
-  addSocialIcons(viewSouth);
-
-  scene.tvscreen = tvscreen;
-  scene.addChild(viewSouth);
+  scene.addChild(navigation);
 }
+
+function createViewSouth(){
+    var view = new Entity(0, 0);
+
+    var background = new SpriteSimple(0, 0, 'img/background.png');
+    var moustache = new SpriteSimple(176, 4, 'img/moustache.png');
+    moustache.tooltip = "Giant Moustache Mask";
+    var camerashelves = new SpriteSimple(205, 30, 'img/camerashelves.png');
+    var bookshelves = new SpriteSimple(32, 24, 'img/bookshelves.png');
+
+    var tv = new SpriteSimple(107, 63, 'img/tv.png');
+    var tvscreen = new SpriteAnimated(109, 65, ['img/tv-off.png', 'img/tv-lessthanthree.png', 'img/tv-twitch.png', 'img/tv-twitter.png', 'img/tv-instagram.png', 'img/tv-usa.png', 'vid/n64.mp4']);
+
+    var map = new SpriteSimple(107, 28, 'img/map.png')
+    map.click = function(){
+      var placeSynonyms = ['Places', 'States', 'Areas', 'Cities', 'Communities', 'Corners', 'Districts', 'Fields', 'Neighborhoods', 'Parts', 'Points', 'Regions', 'Sites', 'Spots', 'Towns', 'Venues', 'Villages', 'Zones', 'Habitats', 'Latitudes', 'Locales', 'Localities', 'Longitudes', 'Niches', 'Nooks', 'Sections', 'Suburbs', 'Vicinities', 'Whereabouts'];
+      var seenSynonyms = ['seen', 'been', 'examined', 'looked at', 'noticed', 'observed', 'regarded', 'spotted', 'viewed', 'watched', 'witnessed', 'contemplated', 'eyed off', 'gawked at', 'gazed upon', 'glimpsed', 'inspected', 'marked', 'minded', 'noted', 'peeked into', 'peered at', 'scoped out', 'scrutinized', 'stared at', 'surveyed', 'layed eyes on', 'taken notice of']
+      var title = placeSynonyms[Math.floor(Math.random() * Math.floor(placeSynonyms.length))] + " I've " + seenSynonyms[Math.floor(Math.random() * Math.floor(seenSynonyms.length))];
+      scene.addChild(new OverlayImage(title, 'img/overlay-map.png'));
+    };
+    map.tvframe = 5;
+    map.tooltip = "USA Adventures";
+
+    var n64 = new SpriteSimple(145, 122, 'img/n64.png');
+    n64.tvframe = 6;
+
+    var norseboard = new SpriteSimple(38, 104, 'img/norseboard.png');
+    norseboard.click = function(){
+      // Page 1
+      var nb1 = new OverlaySimple();
+      nb1.addChild(new ImageSimple(12, 12, 'img/overlay-norseboard.png'));
+
+      // Page 2
+      var nb2 = new OverlaySimple();
+      nb2.addChild(new TextSimple(68, 30, "The Original All-in-One"));
+      nb2.addChild(new TextSimple(24, 80, "A portable keyboard, computer & gamepad for on-the-go hacking and fractal design.", 170, 140));
+      nb2.addChild(new ImageSimple(200, 90, 'img/norseboard-render-1.png'));
+
+      // Page 3
+      var nb3 = new OverlaySimple();
+      nb3.addChild(new TextSimple(30, 30, "Ground Zero: Where it all began"));
+      nb3.addChild(new TextSimple(30, 54, "The project that cut my teeth"));
+
+      var norseboardOverlay = new OverlayPaginated("Norseboard", [nb1, nb2]);
+
+      scene.addChild(norseboardOverlay);
+    }
+    norseboard.tooltip = "Norseboard";
+
+    var videosphere = new SpriteSimple(73, 80, 'img/videosphere.png');
+
+    var projecttoon = new SpriteSimple(37, 129, 'img/projecttoon.png');
+    projecttoon.tooltip = "Project T.O.O.N.";
+
+    view.addChild(background);
+    view.addChild(moustache);
+    view.addChild(camerashelves);
+    view.addChild(bookshelves);
+    view.addChild(map);
+    view.addChild(tv);
+    view.addChild(n64);
+    view.addChild(norseboard);
+    view.addChild(videosphere);
+    view.addChild(projecttoon);
+
+    addCameras(view);
+    addSocialIcons(view);
+
+    view.addChild(shadowOverlay);
+
+    view.addChild(tvscreen);
+
+    scene.tvscreen = tvscreen;
+
+    return view;
+}
+
+function createViewWest(){
+    var view = new Entity(0, 0);
+    var background = new SpriteSimple(0, 0, 'img/background.png');
+    view.addChild(background);
+
+    var lightSwitch = new SpriteSimple(120, 80, 'img/overlay-button-close.png');
+    lightSwitch.click = function(){
+      if (shadowOverlay.visible)
+        shadowOverlay.hide();
+      else
+        shadowOverlay.show();
+    }
+    view.addChild(lightSwitch);
+
+    view.addChild(shadowOverlay);
+
+    return view;
+}
+
+var shadowOverlay = new RectangleSimple(0, 0, canvas.width, canvas.height, "#0009");
+shadowOverlay.hide();
 
 // Cameras
 function addCameras(parent){

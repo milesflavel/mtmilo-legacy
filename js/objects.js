@@ -67,6 +67,12 @@ function Entity(x, y){
     var index = this.parent.children.indexOf(this);
     this.parent.children.splice(index, 1);
   };
+  this.show = function(){
+    this.visible = true;
+  };
+  this.hide = function(){
+    this.visible = false;
+  };
 }
 
 
@@ -84,14 +90,19 @@ function SpriteSimple(x, y, imagePath){
 
   // Methods
   this.render = function(context){
-    context.drawImage(this.image, this.x, this.y);
-    for (var i = 0; i < this.children.length; i++){
-      this.children[i].render(context);
+    if (this.visible){
+      context.drawImage(this.image, this.x, this.y);
+      for (var i = 0; i < this.children.length; i++){
+        this.children[i].render(context);
+      }
     }
   };
 
   this.isMouseInBounds = function(x, y){
-    return (x >= this.x) && (y >= this.y) && (x < this.x + this.image.width) && (y < this.y + this.image.height);
+    if (this.visible)
+      return (x >= this.x) && (y >= this.y) && (x < this.x + this.image.width) && (y < this.y + this.image.height);
+    else
+      return false;
   };
 }
 
@@ -157,6 +168,36 @@ function ImageSimple(x, y, imagePath){
     context.drawImage(this.image, this.x, this.y);
     for (var i = 0; i < this.children.length; i++){
       this.children[i].render(context);
+    }
+  };
+
+  this.isMouseInBounds = function(x, y){
+    return false;
+  };
+}
+
+
+// Image object for overlays
+RectangleSimple.prototype = new Entity();
+RectangleSimple.constructor = RectangleSimple;
+
+function RectangleSimple(x, y, width, height, color){
+  // Initialize
+  Entity.call(this, x, y);
+
+  // Properties
+  this.width = width;
+  this.height = height;
+  this.color = color;
+
+  // Methods
+  this.render = function(context){
+    if (this.visible){
+      context.fillStyle = color;
+      context.fillRect(this.x, this.y, this.width, this.height);
+      for (var i = 0; i < this.children.length; i++){
+        this.children[i].render(context);
+      }
     }
   };
 
@@ -348,4 +389,68 @@ function OverlayPaginated(title, overlays){
 
   // Set the first page
   this.setPage(0);
+}
+
+
+// Simple left-right scene navigation
+NavigationSimple.prototype = new Entity();
+NavigationSimple.constructor = NavigationSimple;
+
+function NavigationSimple(views){
+  // Initialize
+  Entity.call(this, 0, 0);
+
+  // Properties
+  this.view = 0;
+  this.views = views;
+  for (var i = 0; i < views.length; i++){
+    this.addChild(views[i]);
+  }
+
+  var leftButton = new SpriteSimple(0, 130, 'img/nav-button-left.png');
+  leftButton.click = function(){
+    if (this.parent.view > 0){
+      this.parent.view--;
+      leftButton.parent.setView(this.parent.view);
+    }
+  };
+  leftButton.tooltip = "Turn Left";
+  this.addChild(leftButton);
+  this.leftButton = leftButton;
+
+  var rightButton = new SpriteSimple(305, 130, 'img/nav-button-right.png');
+  rightButton.click = function(){
+    if (this.parent.view < this.parent.views.length){
+      this.parent.view++;
+      rightButton.parent.setView(this.parent.view);
+    }
+  };
+  rightButton.tooltip = "Turn Right";
+  this.addChild(rightButton);
+  this.rightButton = rightButton;
+
+  // Methods
+  this.isMouseInBounds = function(x, y){
+    return false;
+  };
+
+  this.setView = function(view){
+    for (var i = 0; i < this.views.length; i++){
+      if (i == view)
+        this.views[i].show();
+      else
+        this.views[i].hide();
+    }
+    if (view > 0)
+      this.leftButton.show();
+    else
+      this.leftButton.hide();
+    if (view < this.views.length-1)
+      this.rightButton.show();
+    else
+      this.rightButton.hide();
+  };
+
+  // Set the first page
+  this.setView(0);
 }
