@@ -2,7 +2,7 @@ function createSceneObjects(){
   var viewSouth = createViewSouth();
   var viewWest = createViewWest();
 
-  var navigation = new NavigationSimple([viewSouth]);//, viewWest]);
+  var navigation = new NavigationSimple([viewSouth, viewWest]);
 
   scene.addChild(navigation);
 }
@@ -10,7 +10,7 @@ function createSceneObjects(){
 function createViewSouth(){
     var view = new Entity(0, 0);
 
-    var background = new SpriteSimple(0, 0, 'img/background.png');
+    var background = new SpriteSimple(0, 0, 'img/background-1.png');
     var moustache = new SpriteSimple(176, 4, 'img/moustache.png');
     moustache.tooltip = "Giant Moustache Mask";
     var camerashelves = new SpriteSimple(205, 30, 'img/camerashelves.png');
@@ -85,10 +85,12 @@ function createViewSouth(){
 
 function createViewWest(){
     var view = new Entity(0, 0);
-    var background = new SpriteSimple(0, 0, 'img/background.png');
+    var background = new SpriteSimple(0, 0, 'img/background-2.png');
     view.addChild(background);
+    var door = new SpriteSimple(161, 35, 'img/door.png');
+    view.addChild(door);
 
-    var lightSwitch = new SpriteSimple(120, 80, 'img/overlay-button-close.png');
+    var lightSwitch = new SpriteSimple(162, 77, 'img/lightSwitch.png');
     lightSwitch.click = function(){
       if (shadowOverlay.visible)
         shadowOverlay.hide();
