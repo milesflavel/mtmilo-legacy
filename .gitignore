@@ -1,4 +1,4 @@
 *.sh
-.DS_Store
+**.DS_Store
 ngrok
 main-old.js

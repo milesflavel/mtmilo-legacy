@@ -87,7 +87,9 @@ function createViewWest(){
     var view = new Entity(0, 0);
     var background = new SpriteSimple(0, 0, 'img/background-2.png');
     view.addChild(background);
-    var door = new SpriteSimple(161, 35, 'img/door.png');
+    var door = new SpriteSimple(161, 34, 'img/door.png');
+    view.addChild(door);
+    var door = new SpriteSimple(238, 32, 'img/wardrobe.png');
     view.addChild(door);
 
     var lightSwitch = new SpriteSimple(162, 77, 'img/lightSwitch.png');
