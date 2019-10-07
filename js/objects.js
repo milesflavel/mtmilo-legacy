@@ -435,6 +435,7 @@ function NavigationSimple(views){
   };
 
   this.setView = function(view){
+    this.view = view;
     for (var i = 0; i < this.views.length; i++){
       if (i == view)
         this.views[i].show();
