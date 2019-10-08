@@ -94,7 +94,7 @@ function createViewWest(){
     var desk = new SpriteSimple(233, 160, 'img/desk.png');
     view.addChild(desk);
 
-    var lightSwitch = new SpriteSimple(161, 77, 'img/lightSwitch.png');
+    var lightSwitch = new SpriteSimple(161, 77, 'img/lightswitch.png');
     lightSwitch.click = function(){
       if (shadowOverlay.visible)
         shadowOverlay.hide();
