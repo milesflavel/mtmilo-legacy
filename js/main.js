@@ -5,6 +5,7 @@ var scene, lastTimestamp;
 function init(){
   // Create the scene object
   scene = new Scene();
+  scene.configureCanvas();
 
   // Initialize png-font for text rendering
   png_font.setup(scene.context, "img/unifont.png");
@@ -27,6 +28,27 @@ function init(){
     scene.checkMouseover();
     if (scene.mouseover && mouseoverCurrent == scene.mouseover)
       scene.mouseover.click();
+  });
+
+  scene.canvas.addEventListener('fullscreenchange', function(evt){
+    setTimeout(function(){
+      scene.configureCanvas();
+    }, 100);
+  });
+  scene.canvas.addEventListener('webkitfullscreenchange', function(evt){
+    setTimeout(function(){
+      scene.configureCanvas();
+    }, 100);
+  });
+  scene.canvas.addEventListener('mozfullscreenchange', function(evt){
+    setTimeout(function(){
+      scene.configureCanvas();
+    }, 100);
+  });
+  scene.canvas.addEventListener('MSFullscreenChange', function(evt){
+    setTimeout(function(){
+      scene.configureCanvas();
+    }, 100);
   });
 
   // Add objects to the scene

@@ -6,7 +6,7 @@ body {
 }
 
 body::after {
-  content: "This site is designed to be viewed on a modern browser in approximately a 4:3 aspect ratio\A Copyright 2019 Miles Flavel";
+  content: "This site is best viewed on a modern browser in a 16:10 aspect ratio\A Copyright 2019 Miles Flavel";
   white-space: pre;
   position: absolute;
   bottom: 10px;

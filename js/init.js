@@ -5,6 +5,18 @@ function createSceneObjects(){
   var navigation = new NavigationSimple([viewSouth, viewWest]);
 
   scene.addChild(navigation);
+
+  var fullscreen = new SpriteAnimated(288, 180, ['img/ui-fullscreen.png', 'img/ui-minimise.png']);
+  fullscreen.click = function(){
+    scene.toggleFullscreen();
+  }
+  fullscreen.animate = function(){
+    if (scene.fullscreen)
+      this.frame = 1;
+    else
+      this.frame = 0;
+  }
+  scene.addChild(fullscreen);
 }
 
 function createViewSouth(){

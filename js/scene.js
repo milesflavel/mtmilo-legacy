@@ -11,6 +11,11 @@ function Scene(){
   this.mouseY = 0;
   this.mouseover = null;
 
+  this.canvasScale = 1;
+  this.left = 0;
+  this.top = 0;
+  this.fullscreen = false;
+
   // Methods
   this.addChild = function(object){
     object.parent = this;
@@ -52,11 +57,8 @@ function Scene(){
   };
 
   this.setCursorPos = function(x, y){
-    var rect = canvas.getBoundingClientRect();
-    var sx = canvas.scrollWidth / canvas.width;
-    var sy = canvas.scrollHeight / canvas.height;
-    this.mouseX = Math.floor((x - rect.left) / sx);
-    this.mouseY = Math.floor((y - rect.top) /sy);
+    this.mouseX = Math.floor((x - this.left) / this.canvasScale);
+    this.mouseY = Math.floor((y - this.top) / this.canvasScale);
   }
 
   this.drawCursor = function(){
@@ -79,4 +81,54 @@ function Scene(){
     scene.context.fillRect(leftBound-3, 0, pixelLength+6, 18);
     png_font.drawText(tooltip, [leftBound, 0], "black");
   };
+
+  this.configureCanvas = function(){
+    var sx = canvas.scrollWidth / canvas.width;
+    var sy = canvas.scrollHeight / canvas.height;
+    this.canvasScale = Math.min(sx, sy);
+    var rect = canvas.getBoundingClientRect();
+    this.left = ((canvas.scrollWidth - (canvas.width * this.canvasScale)) / 2) + rect.left;
+    this.top = ((canvas.scrollHeight - (canvas.height * this.canvasScale)) / 2) + rect.top;
+    this.fullscreen = typeof(document.fullscreenElement || document.msFullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement) !== "undefined";
+  };
+
+  // Fullscreen functions
+  this.goFullscreen = function(){
+    if (this.canvas.requestFullscreen){
+      this.canvas.requestFullscreen();
+    }
+    else if (this.canvas.msRequestFullscreen){
+      this.canvas.msRequestFullscreen();
+    }
+    else if (this.canvas.mozRequestFullScreen){
+      this.canvas.mozRequestFullScreen();
+    }
+    else if (el.webkitRequestFullscreen){
+      this.canvas.webkitRequestFullscreen();
+    }
+  }
+
+  this.exitFullscreen = function(){
+    if (document.exitFullscreen){
+      document.exitFullscreen();
+    }
+    else if (document.msExitFullscreen){
+      document.msExitFullscreen();
+    }
+    else if (document.mozCancelFullScreen){
+      document.mozCancelFullScreen();
+    }
+    else if (document.webkitCancelFullScreen){
+      document.webkitCancelFullScreen();
+    }
+  }
+
+  this.toggleFullscreen = function(){
+    if(!this.fullscreen){
+      this.goFullscreen(this.canvas);
+    }
+    else{
+      this.exitFullscreen();
+    }
+  }
 }
