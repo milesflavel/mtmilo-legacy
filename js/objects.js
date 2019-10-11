@@ -418,7 +418,7 @@ function NavigationSimple(views){
   this.addChild(leftButton);
   this.leftButton = leftButton;
 
-  var rightButton = new SpriteSimple(305, 130, 'img/nav-button-right.png');
+  var rightButton = new SpriteSimple(304, 130, 'img/nav-button-right.png');
   rightButton.click = function(){
     if (this.parent.view < this.parent.views.length){
       this.parent.view++;
