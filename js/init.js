@@ -137,10 +137,18 @@ function addCameras(parent){
   addCamera(parent, 209, 151, 1, 10, "Zeiss Ikon Contina");
   addCamera(parent, 210, 164, 1, 11, "Zenit 12 XP");
   addCamera(parent, 210, 178, 1, 12, "Minolta X-300");
+
   addCamera(parent, 225, 36,  2, 1,  "Olympus OM-1");
   addCamera(parent, 225, 49,  2, 2,  "Olympus OM-1");
   addCamera(parent, 225, 62,  2, 3,  "Olympus OM-10");
   addCamera(parent, 225, 75,  2, 4,  "Olympus OM-30");
+
+  addCamera(parent, 241, 37,  3, 1,  "Canon Canonet G-III QL17");
+  addCamera(parent, 241, 50,  3, 2,  "Canon Canonet QL19");
+  addCamera(parent, 241, 63,  3, 3,  "Canon Canonet QL19");
+  addCamera(parent, 241, 76,  3, 4,  "Canon Canonet");
+  addCamera(parent, 241, 89,  3, 5,  "Canon Canonet");
+  addCamera(parent, 242, 101, 3, 6,  "Canon Canonet Junior");
 }
 
 function addCamera(parent, x, y, column, row, tooltip){
